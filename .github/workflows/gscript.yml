@@ -27,21 +27,12 @@ jobs: # The jobs that run in this workflow
           body: | # The body of the comment is a message thanking the user for opening the issue.
            Thanks for opening this issue! We'll take a look as soon as possible.
 # Comment on when an issue is closed
-name: Comment when issue is closed
-on: 
-  issues:
-     types:
-     - closed
-jobs:
-  comment_issues:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
+
       - name: add comment when issue is closed
         uses: peter-evans/create-or-update-comment@v1
-        issue-number: ${{ github.event.issue.number }}
-        body: | # The body of the comment is a message thanking the user for opening the issue.
+        with:
+         issue-number: ${{ github.event.issue.number }}
+         body: | # The body of the comment is a message thanking the user for opening the issue.
            The issue is now resolved.
 
 # Comment on when an users opens the first pull request 
