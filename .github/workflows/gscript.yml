@@ -33,11 +33,12 @@ on:
      types:
      - closed
 jobs:
-  build:
-    name: Comment when issue is closed
+  comment_issues:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-      - name: add comment
+      - name: add comment when issue is closed
         uses: peter-evans/create-or-update-comment@v1
         issue-number: ${{ github.event.issue.number }}
         body: | # The body of the comment is a message thanking the user for opening the issue.
