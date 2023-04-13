@@ -37,6 +37,10 @@ jobs:
     name: Comment when issue is closed
     runs-on: ubuntu-latest
     steps:
-      - run: gh pr comment $PR_URL --body "The issue is now resolved."
+      - name: add comment
+        uses: peter-evans/create-or-update-comment@v1
+        issue-number: ${{ github.event.issue.number }}
+        body: | # The body of the comment is a message thanking the user for opening the issue.
+           The issue is now resolved.
 
 # Comment on when an users opens the first pull request 
